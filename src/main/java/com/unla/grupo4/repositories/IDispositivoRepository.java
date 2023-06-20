@@ -9,11 +9,12 @@ import org.springframework.stereotype.Repository;
 import com.unla.grupo4.entities.Dispositivo;
 
 @Repository("dispositivoRepository")
-public interface IDispositivoRepository extends JpaRepository<Dispositivo, Serializable>{
+public interface IDispositivoRepository extends JpaRepository<Dispositivo, Serializable> {
 
 	public abstract Dispositivo findById(int id);
 	
-	public abstract List<Dispositivo> findByName(String name);
+	public abstract List<Dispositivo> findByNombre(String name);
 	
 	public abstract List<Dispositivo> findByActivo(boolean activo);
+	
 }

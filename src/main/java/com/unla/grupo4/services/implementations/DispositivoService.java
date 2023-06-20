@@ -15,10 +15,10 @@ import com.unla.grupo4.services.IDispositivoService;
 public class DispositivoService implements IDispositivoService{
 	
 	@Autowired
-	@Qualifier("personRepository")
+	@Qualifier("dispositivoRepository")
 	private IDispositivoRepository dispositivoRepository;
 	
-	private ModelMapper modelMapeer = new ModelMapper();
+	private ModelMapper modelMapper = new ModelMapper();
 	
 	@Override
 	public List<Dispositivo> getAll() {

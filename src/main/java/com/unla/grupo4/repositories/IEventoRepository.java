@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.unla.grupo4.entities.Dispositivo;
 import com.unla.grupo4.entities.Evento;
 
 @Repository("eventoRepository")
@@ -13,4 +14,5 @@ public interface IEventoRepository extends JpaRepository<Evento, Serializable> {
 	
 	public abstract Evento findById(int id);
 	
+	public abstract List<Evento> findByDispositivo(Dispositivo dispositivo);
 }
