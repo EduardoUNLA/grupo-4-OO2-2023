@@ -12,5 +12,7 @@ public class SensorTemperatura extends Dispositivo{
 	
 	private float temperaturaAmbiente;
 	
-	private boolean encendido;
+	private boolean aire;
+	
+	private boolean calefaccion;
 }
