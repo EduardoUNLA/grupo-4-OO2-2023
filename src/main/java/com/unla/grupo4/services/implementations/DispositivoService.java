@@ -22,38 +22,28 @@ public class DispositivoService implements IDispositivoService{
 	
 	@Override
 	public List<Dispositivo> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return dispositivoRepository.findAll();
 	}
 
 	@Override
 	public Dispositivo findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return dispositivoRepository.findById(id);
 	}
 
 	@Override
 	public List<Dispositivo> findByNombre(String nombre) {
-		// TODO Auto-generated method stub
-		return null;
+		return dispositivoRepository.findByNombre(nombre);
 	}
 
 	@Override
-	public Dispositivo findByActivo(boolean activo) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Dispositivo> findByActivo(boolean activo) {
+		return dispositivoRepository.findByActivo(activo);
 	}
 
 	@Override
 	public Dispositivo insertOrUpdate(Dispositivo dispositivo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean remove(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		Dispositivo dispositivoNew = dispositivoRepository.save(dispositivo);
+		return dispositivoNew;
 	}
 
 }

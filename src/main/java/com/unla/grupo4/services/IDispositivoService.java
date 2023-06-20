@@ -12,9 +12,8 @@ public interface IDispositivoService {
 	
 	public List<Dispositivo> findByNombre(String nombre);
 	
-	public Dispositivo findByActivo(boolean activo);
+	public List<Dispositivo> findByActivo(boolean activo);
 	
 	public Dispositivo insertOrUpdate(Dispositivo dispositivo);
-	
-	public boolean remove(int id);
+
 }
