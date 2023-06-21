@@ -8,8 +8,7 @@ import lombok.Setter;
 @Entity
 @Getter @Setter @NoArgsConstructor
 public class SensorBasura extends Dispositivo{
-	private int id;
-	
+
 	private boolean lleno;
 	
 	private int nroDepartamento;

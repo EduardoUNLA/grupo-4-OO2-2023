@@ -9,8 +9,6 @@ import lombok.Setter;
 @Getter @Setter @NoArgsConstructor
 public class SensorEstacionamiento extends Dispositivo{
 	
-	private int id;
-	
 	private boolean ocupado;
 	
 	private int plaza;

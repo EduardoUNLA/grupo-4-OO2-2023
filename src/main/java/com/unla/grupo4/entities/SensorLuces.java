@@ -8,7 +8,6 @@ import lombok.Setter;
 @Entity
 @Getter @Setter @NoArgsConstructor
 public class SensorLuces extends Dispositivo{
-	private int id;
 	
 	private float nivelLuz;
 	
