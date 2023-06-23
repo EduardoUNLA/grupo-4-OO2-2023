@@ -16,7 +16,8 @@ public class ViewRouteHelper {
 	//SensorBasura
 	public final static String SENSORBASURA_NUEVO = "/sensor_basura/nuevo";
 	public final static String SENSORBASURA_INDEX = "/sensor_basura/index";
-	public final static String SENSORBASURA_UPDATE = "sensor_basura/update";
+	public final static String SENSORBASURA_UPDATE = "/sensor_basura/update";
+	public static final String SENSORBASURA_EVENTOS = "/sensor_basura/eventos";
 	
 	/**** Redirects ****/
 	public final static String ROUTE = "/user/user_select";
