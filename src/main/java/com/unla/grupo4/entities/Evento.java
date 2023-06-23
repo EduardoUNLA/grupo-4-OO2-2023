@@ -35,14 +35,16 @@ public class Evento {
 	@JoinColumn(name="dispositivo_id",nullable=true)
 	private Dispositivo dispositivo;
 	
-	public Evento(int id, String descripcion, LocalDateTime fechaHora) {
+	public Evento(int id, String descripcion, LocalDateTime fechaHora, Dispositivo dispositivo) {
 		this.id = id;
 		this.descripcion = descripcion;
 		this.fechaHora = fechaHora;
+		this.dispositivo = dispositivo;
 	}
 	
-	public Evento(String descripcion, LocalDateTime fechaHora) {
+	public Evento(String descripcion, LocalDateTime fechaHora, Dispositivo dispositivo) {
 		this.descripcion = descripcion;
 		this.fechaHora = fechaHora;
+		this.dispositivo = dispositivo;
 	}
 }
