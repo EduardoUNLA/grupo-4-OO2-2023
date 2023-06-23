@@ -40,7 +40,7 @@ public class SensorBasuraController {
 	public ModelAndView index() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.SENSORBASURA_INDEX);
 		mAV.addObject("sensores", sensorBasuraService.getAll());
-		mAV.addObject("eventos", eventoService.getAll());
+		mAV.addObject("eventos", eventoService.getEventosSensorBasura());
 		mAV.addObject("sensorBasura", new SensorBasura());
 		return mAV;
 	}
@@ -96,6 +96,7 @@ public class SensorBasuraController {
 		sensorBasuraService.remove(id);
 		return new RedirectView(ViewRouteHelper.SENSORBASURA_ROOT);
 	}
+
 	@GetMapping("/generar_eventos")
 	public RedirectView generareventos() {
 		List<SensorBasura> sensores = sensorBasuraService.findByActivo(true);
@@ -116,12 +117,32 @@ public class SensorBasuraController {
 		}
 		return new RedirectView(ViewRouteHelper.SENSORBASURA_ROOT);
 	}
-	
+
 	@GetMapping("/eventos/{id}")
 	public ModelAndView getEventos(@PathVariable("id") int id) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.SENSORBASURA_EVENTOS);
 		mAV.addObject("eventos", eventoService.getByIdDispositivo(id));
 		return mAV;
+	}
+
+	@GetMapping("/encender_todos")
+	public RedirectView encenderTodos() {
+		List<SensorBasura> sensores = sensorBasuraService.findByActivo(false);
+		for (int i = 0; i < sensores.size(); i++) {
+			sensores.get(i).setActivo(true);
+			sensorBasuraService.insertOrUpdate(sensores.get(i));
+		}
+		return new RedirectView(ViewRouteHelper.SENSORBASURA_ROOT);
+	}
+	
+	@GetMapping("/apagar_todos")
+	public RedirectView apagarTodos() {
+		List<SensorBasura> sensores = sensorBasuraService.findByActivo(true);
+		for (int i = 0; i < sensores.size(); i++) {
+			sensores.get(i).setActivo(false);
+			sensorBasuraService.insertOrUpdate(sensores.get(i));
+		}
+		return new RedirectView(ViewRouteHelper.SENSORBASURA_ROOT);
 	}
 
 }

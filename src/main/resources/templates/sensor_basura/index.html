@@ -24,6 +24,13 @@
   <div class="link-container">
 <font size="5px"><a href="/sensor_basura/generar_eventos" style="text-decoration: none;">Generar Eventos</a></font>
   </div>
+  </div>
+  <div class="link-container">
+<font size="5px"><a href="/sensor_basura/encender_todos" style="text-decoration: none;">Encender Todos</a></font>
+  </div>
+  <div class="link-container">
+<font size="5px"><a href="/sensor_basura/apagar_todos" style="text-decoration: none;">Apagar Todos</a></font>
+  </div>
   <!--<div class="link-container">
 <font size="5px"><a href="/sensor_basura/vaciar" style="text-decoration: none;">Vaciar contenedores</a></font>
   </div>-->
@@ -102,7 +109,7 @@
 			  </tr>
 		  </thead>
 		  <tbody>
-			  <tr th:each="e : ${eventos}" th:if="${e.dispositivo.nombre == 'Sensor Basura'}">
+			  <tr th:each="e : ${eventos}">
 				  <td><span th:text="${e.id}" /></td>
 				  <td><span th:text="${e.dispositivo.id}" /></td>
 				  <td><span th:text="${e.descripcion}"/></td>
