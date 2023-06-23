@@ -1,0 +1,28 @@
+<form action="#" th:action="@{/sensor_basura/update}" th:object="${sensorBasura}" method="post">
+	<input type="hidden" th:field="*{id}" />
+	<p>Nombre: <input type="text" th:field="*{nombre}" /></p>
+	<p><input type="hidden" th:field="*{activo}" /></p>
+	<p><input type="hidden" th:field="*{lleno}" /></p>
+	<p>Departamento: <input type="number" th:field="*{nroDepartamento}" /></p>
+	<p>Distancia basura: <input type="text" th:field="*{distanciaBasura}" /></p>
+	<input type="submit" value="Guardar" />
+</form>
+<form action="#" th:action="@{/sensor_basura/baja}" th:object="${sensorBasura}"method="post">
+	<input type="hidden" th:field="*{id}" />
+	<input type="hidden" th:field="*{nombre}" />
+	<input type="hidden" th:field="*{lleno}" />
+	<input type="hidden" th:field="*{nroDepartamento}" />
+	<input type="hidden" th:field="*{distanciaBasura}" />
+	<input type="submit" value="Apagar sensor" />
+</form>
+<form action="#" th:action="@{/sensor_basura/alta}" th:object="${sensorBasura}"method="post">
+	<input type="hidden" th:field="*{id}" />
+	<input type="hidden" th:field="*{nombre}" />
+	<input type="hidden" th:field="*{lleno}" />
+	<input type="hidden" th:field="*{nroDepartamento}" />
+	<input type="hidden" th:field="*{distanciaBasura}" />
+	<input type="submit" value="Encender sensor" />
+</form>
+<form action="#" th:action="@{/sensor_basura/delete/{id}(id=${sensorBasura.id})}" method="post">
+	<input type="submit" value="Borrar Sensor"/>
+</form>
