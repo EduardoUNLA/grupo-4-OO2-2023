@@ -1,6 +1,5 @@
 package com.unla.grupo4.services.implementations;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -63,16 +62,5 @@ public class SensorBasuraService implements ISensorBasuraService{
 	@Override
 	public List<SensorBasura> findByLleno(boolean lleno) {
 		return sensorBasuraRepository.findByLleno(lleno);
-	}
-	
-	public List<SensorBasura> comprobar(List<SensorBasura> sensores){
-		List<SensorBasura> comprobados = new ArrayList<>();
-		for(int i=0;i<sensores.size();i++) {
-			if(sensores.get(i).getDistanciaBasura() < 0.1) {
-				sensores.get(i).setLleno(true);
-				comprobados.add(sensores.get(i));
-			}
-		}
-		return comprobados;
 	}
 }

@@ -25,54 +25,56 @@ import com.unla.grupo4.services.ISensorBasuraService;
 @Controller
 @RequestMapping("/sensor_basura")
 public class SensorBasuraController {
-	
+
 	@Autowired
 	@Qualifier("sensorBasuraService")
 	private ISensorBasuraService sensorBasuraService;
-	
+
 	@Autowired
 	@Qualifier("eventoService")
 	private IEventoService eventoService;
-	
+
 	private ModelMapper modelMapper = new ModelMapper();
 
 	@GetMapping("")
 	public ModelAndView index() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.SENSORBASURA_INDEX);
-		mAV.addObject("sensores",sensorBasuraService.getAll());
+		mAV.addObject("sensores", sensorBasuraService.getAll());
 		mAV.addObject("eventos", eventoService.getAll());
 		mAV.addObject("sensorBasura", new SensorBasura());
 		return mAV;
 	}
-	
+
 	@GetMapping("/nuevo")
 	public ModelAndView crear() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.SENSORBASURA_NUEVO);
 		mAV.addObject("sensorBasura", new SensorBasuraModel());
 		return mAV;
 	}
-	
+
 	@PostMapping("/crear")
 	public RedirectView crear(@ModelAttribute("sensorBasura") SensorBasuraModel sensorBasuraModel) {
 		sensorBasuraModel.setActivo(true);
 		sensorBasuraModel.setDistanciaBasura(1);
-		sensorBasuraService.insertOrUpdate(modelMapper.map(sensorBasuraModel,SensorBasura.class));
+		sensorBasuraModel.setNombre("Sensor Basura");
+		sensorBasuraService.insertOrUpdate(modelMapper.map(sensorBasuraModel, SensorBasura.class));
 		return new RedirectView(ViewRouteHelper.SENSORBASURA_ROOT);
 	}
-	
+
 	@GetMapping("/{id}")
 	public ModelAndView get(@PathVariable("id") int id) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.SENSORBASURA_UPDATE);
 		mAV.addObject("sensorBasura", sensorBasuraService.findById(id));
 		return mAV;
 	}
-	
+
 	@PostMapping("/update")
 	public RedirectView update(@ModelAttribute("sensorBasura") SensorBasuraModel sensorBasuraModel) {
 		SensorBasura sensorBasura = modelMapper.map(sensorBasuraModel, SensorBasura.class);
 		sensorBasuraService.insertOrUpdate(sensorBasura);
 		return new RedirectView(ViewRouteHelper.SENSORBASURA_ROOT);
 	}
+
 	@PostMapping("/baja")
 	public RedirectView apagar(@ModelAttribute("sensorBasura") SensorBasuraModel sensorBasuraModel) {
 		SensorBasura sensorBasura = modelMapper.map(sensorBasuraModel, SensorBasura.class);
@@ -80,6 +82,7 @@ public class SensorBasuraController {
 		sensorBasuraService.insertOrUpdate(sensorBasura);
 		return new RedirectView(ViewRouteHelper.SENSORBASURA_ROOT);
 	}
+
 	@PostMapping("/alta")
 	public RedirectView encender(@ModelAttribute("sensorBasura") SensorBasuraModel sensorBasuraModel) {
 		SensorBasura sensorBasura = modelMapper.map(sensorBasuraModel, SensorBasura.class);
@@ -87,7 +90,7 @@ public class SensorBasuraController {
 		sensorBasuraService.insertOrUpdate(sensorBasura);
 		return new RedirectView(ViewRouteHelper.SENSORBASURA_ROOT);
 	}
-	
+
 	@PostMapping("/delete/{id}")
 	public RedirectView delete(@PathVariable("id") int id) {
 		sensorBasuraService.remove(id);
@@ -95,24 +98,30 @@ public class SensorBasuraController {
 	}
 	@GetMapping("/generar_eventos")
 	public RedirectView generareventos() {
-		List<SensorBasura> sensores = sensorBasuraService.comprobar(sensorBasuraService.findByActivo(true));
-		for (int i=0; i<sensores.size(); i++) {
-				sensorBasuraService.insertOrUpdate(sensores.get(i));
-				EventoModel eventoModel = new EventoModel("Tacho lleno, vaciar",LocalDateTime.now(),sensores.get(i));
+		List<SensorBasura> sensores = sensorBasuraService.findByActivo(true);
+		for (int i = 0; i < sensores.size(); i++) {
+			EventoModel eventoModel = null;
+			if (sensores.get(i).isLleno()) {
+				sensores.get(i).vaciar();
+				eventoModel = new EventoModel("Tacho vaciado", LocalDateTime.now(), sensores.get(i));
+			} else {
+				if (sensores.get(i).comprobar()) {
+					eventoModel = new EventoModel("Tacho lleno, vaciar", LocalDateTime.now(), sensores.get(i));
+				}
+			}
+			if (eventoModel != null) {
 				eventoService.insertOrUpdate(eventoModel);
-		}
-		return new RedirectView(ViewRouteHelper.SENSORBASURA_ROOT);
-	}
-	@GetMapping("/vaciar")
-	public RedirectView vaciar() {
-		List<SensorBasura> sensores = sensorBasuraService.findByLleno(true);
-		for (int i=0; i<sensores.size(); i++) {
-			sensores.get(i).reiniciar();
+			}
 			sensorBasuraService.insertOrUpdate(sensores.get(i));
-			EventoModel eventoModel = new EventoModel("Tacho vaciado",LocalDateTime.now(),sensores.get(i));
-			eventoService.insertOrUpdate(eventoModel);
 		}
 		return new RedirectView(ViewRouteHelper.SENSORBASURA_ROOT);
 	}
 	
+	@GetMapping("/eventos/{id}")
+	public ModelAndView getEventos(@PathVariable("id") int id) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.SENSORBASURA_EVENTOS);
+		mAV.addObject("eventos", eventoService.getByIdDispositivo(id));
+		return mAV;
+	}
+
 }

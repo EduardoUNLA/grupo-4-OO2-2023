@@ -24,9 +24,9 @@
   <div class="link-container">
 <font size="5px"><a href="/sensor_basura/generar_eventos" style="text-decoration: none;">Generar Eventos</a></font>
   </div>
-  <div class="link-container">
+  <!--<div class="link-container">
 <font size="5px"><a href="/sensor_basura/vaciar" style="text-decoration: none;">Vaciar contenedores</a></font>
-  </div>
+  </div>-->
 <h1 align="left" font-family: Verdana, Geneva, Tahoma, sans-serif;>Sensores encendidos</h1>
 <table border="1px">
 		  <thead>
@@ -39,6 +39,7 @@
 				  <th>Departamento</th>
 				  <th>Distancia basura</th>
 				  <th>Editar</th>
+				  <th>Eventos</th>
 			  </tr>
 		  </thead>
 		  <tbody>
@@ -48,9 +49,12 @@
 				  <td><span th:text="${s.nombre}" /></td>
 				  <td><span th:text="${s.lleno} ? 'Recoger' : 'Falta'" /></td>
 				  <td><span th:text="${s.nroDepartamento}" /></td>
-				  <td><span th:text="${s.distanciaBasura}" /></td>
+				  <td><span th:text="${s.distanciaBasura}" /> mts</td>
 				  <td>
 					  <a th:href="@{/sensor_basura/{id}(id=${s.id})}" style="text-decoration: none;">Editar</a>
+				  </td>
+				  <td>
+					  <a th:href="@{/sensor_basura/eventos/{id}(id=${s.id})}" style="text-decoration: none;">Ver</a>
 				  </td>
 		  </tbody>
 </table>
@@ -66,6 +70,7 @@
 				  <th>Departamento</th>
 				  <th>Distancia basura</th>
 				  <th>Editar</th>
+				  <th>Eventos</th>
 			  </tr>
 		  </thead>
 		  <tbody>
@@ -75,9 +80,12 @@
 				  <td><span th:text="${s.nombre}" /></td>
 				  <td><span th:text="${s.lleno} ? 'Recoger' : 'Falta'" /></td>
 				  <td><span th:text="${s.nroDepartamento}" /></td>
-				  <td><span th:text="${s.distanciaBasura}" /></td>
+				  <td><span th:text="${s.distanciaBasura}" /> mts</td>
 				  <td>
 					  <a th:href="@{/sensor_basura/{id}(id=${s.id})}" style="text-decoration: none;">Editar</a>
+				  </td>
+				  <td>
+					  <a th:href="@{/sensor_basura/eventos/{id}(id=${s.id})}" style="text-decoration: none;">Ver</a>
 				  </td>
 		  </tbody>
 </table>
@@ -88,14 +96,16 @@
 			  
 			  <tr>
 				  <th>Id</th>
+				  <th>Id Dispositivo</th>
 				  <th>Descripcion</th>
 				  <th>Fecha y Hora</th>
 				  <th>Dispositivo</th>
 			  </tr>
 		  </thead>
 		  <tbody>
-			  <tr th:each="e : ${eventos}">
+			  <tr th:each="e : ${eventos}" th:if="${e.dispositivo.nombre == 'Sensor Basura'}">
 				  <td><span th:text="${e.id}" /></td>
+				  <td><span th:text="${e.dispositivo.id}" /></td>
 				  <td><span th:text="${e.descripcion}"/></td>
 				  <td><span th:text="${e.fechaHora}" /></td>
 				  <td><span th:text="${e.dispositivo.nombre}"></td>

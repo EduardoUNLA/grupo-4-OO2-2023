@@ -24,8 +24,13 @@ public class SensorBasura extends Dispositivo{
 		this.distanciaBasura = distanciaBasura;
 	}
 	
-	public void reiniciar() {
+	public void vaciar() {
 		this.setLleno(false);
 		this.setDistanciaBasura(1);
+	}
+	public boolean comprobar() {
+		if(this.getDistanciaBasura() < 0.10)
+			this.setLleno(true);
+		return this.isLleno();
 	}
 }
