@@ -99,22 +99,7 @@ public class SensorBasuraController {
 
 	@GetMapping("/generar_eventos")
 	public RedirectView generareventos() {
-		List<SensorBasura> sensores = sensorBasuraService.findByActivo(true);
-		for (int i = 0; i < sensores.size(); i++) {
-			EventoModel eventoModel = null;
-			if (sensores.get(i).isLleno()) {
-				sensores.get(i).vaciar();
-				eventoModel = new EventoModel("Tacho vaciado", LocalDateTime.now(), sensores.get(i));
-			} else {
-				if (sensores.get(i).comprobar()) {
-					eventoModel = new EventoModel("Tacho lleno, vaciar", LocalDateTime.now(), sensores.get(i));
-				}
-			}
-			if (eventoModel != null) {
-				eventoService.insertOrUpdate(eventoModel);
-			}
-			sensorBasuraService.insertOrUpdate(sensores.get(i));
-		}
+		sensorBasuraService.generarEventos();
 		return new RedirectView(ViewRouteHelper.SENSORBASURA_ROOT);
 	}
 
@@ -127,21 +112,13 @@ public class SensorBasuraController {
 
 	@GetMapping("/encender_todos")
 	public RedirectView encenderTodos() {
-		List<SensorBasura> sensores = sensorBasuraService.findByActivo(false);
-		for (int i = 0; i < sensores.size(); i++) {
-			sensores.get(i).setActivo(true);
-			sensorBasuraService.insertOrUpdate(sensores.get(i));
-		}
+		sensorBasuraService.encenderTodos();
 		return new RedirectView(ViewRouteHelper.SENSORBASURA_ROOT);
 	}
 	
 	@GetMapping("/apagar_todos")
 	public RedirectView apagarTodos() {
-		List<SensorBasura> sensores = sensorBasuraService.findByActivo(true);
-		for (int i = 0; i < sensores.size(); i++) {
-			sensores.get(i).setActivo(false);
-			sensorBasuraService.insertOrUpdate(sensores.get(i));
-		}
+		sensorBasuraService.apagarTodos();
 		return new RedirectView(ViewRouteHelper.SENSORBASURA_ROOT);
 	}
 

@@ -20,5 +20,11 @@ public interface ISensorBasuraService {
 
 	public boolean remove(int id);
 
-	public List<SensorBasura> findByActivo(boolean activo);	
+	public List<SensorBasura> findByActivo(boolean activo);
+
+	void generarEventos();
+
+	void encenderTodos();
+
+	void apagarTodos();	
 }
