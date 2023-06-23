@@ -14,7 +14,7 @@
 				  <td><span th:text="${e.id}" /></td>
 				  <td><span th:text="${e.dispositivo.id}" /></td>
 				  <td><span th:text="${e.descripcion}"/></td>
-				  <td><span th:text="${e.fechaHora}" /></td>
+				  <td><span th:text="${#temporals.format(e.fechaHora, 'dd-MM-yyyy HH:mm')}" /></td>
 				  <td><span th:text="${e.dispositivo.nombre}"></td>
 		  </tbody>
 </table>
