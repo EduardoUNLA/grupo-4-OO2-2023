@@ -1,0 +1,19 @@
+<title>Eventos</title>
+<table border="1px">
+		  <thead>
+			  
+			  <tr>
+				  <th>Id</th>
+				  <th>Descripcion</th>
+				  <th>Fecha y Hora</th>
+				  <th>Dispositivo</th>
+			  </tr>
+		  </thead>
+		  <tbody>
+			  <tr th:each="e : ${eventos}">
+				  <td><span th:text="${e.id}" /></td>
+				  <td><span th:text="${e.descripcion}"/></td>
+				  <td><span th:text="${e.fechaHora}" /></td>
+				  <td><span th:text="${e.dispositivo.nombre}"></td>
+		  </tbody>
+</table>
