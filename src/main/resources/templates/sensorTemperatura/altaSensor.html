@@ -1,0 +1,10 @@
+<form action="#" th:action="@{nuevoSensorT}" th:object="${sensor}" method="post">
+	<p> NOMBRE: <input type="text" th:field="*{nombre}" /></p>
+	<p> ACTIVO: <input type="text" th:field="*{activo}" /></p>
+	<p> TEMPERATURA: <input type="text" th:field="*{temperatura}" /></p>
+	<p> CALEFACCION: <input type="text" th:field="*{calefaccion}" /></p>
+	<p> AIRE: <input type="text" th:field="*{aire}" /></p>
+
+	<input type="submit" /> <input type="reset"/>
+
+</form>

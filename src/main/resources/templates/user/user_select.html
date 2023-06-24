@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Seleccion de usuario</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    
+    h1 {
+      margin-top: 50px;
+    }
+    
+    .rectangle {
+      display: inline-block;
+      width: 200px;
+      height: 100px;
+      background-color: rgb(255, 128, 128);
+      margin-top: 20px;
+      cursor: pointer;
+      border-radius: 10px; /* Adding round corners */
+    }
+    
+    .rectangle-content {
+      color: rgb(0, 0, 0);
+      line-height: 100px;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Elija con qué tipo de usuario desea ingresar</h1>
+  
+  <div class="rectangle">
+    <a class="rectangle-content" href="/user/admin" style="text-decoration: none;">Administrador</a>
+  </div>
+  
+  <div class="rectangle">
+	<a class="rectangle-content" href="/user/auditor" style="text-decoration: none;">Auditor</a>
+  </div>
+  
+  <script>
+  </script>
+</body>
+</html>

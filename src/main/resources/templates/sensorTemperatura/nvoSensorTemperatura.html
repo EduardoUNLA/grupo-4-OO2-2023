@@ -1,0 +1,36 @@
+<h1>---- SENSOR DE TEMPERATURA ----</h1>
+
+<p> NOMBRE: <span th:text="${sensor.nombre}" />
+<p> ACTIVO: <span th:text="${sensor.activo}" />
+<p> TEMPERATURA: <span th:text="${sensor.temperatura}" />
+<p> CALEFACCION: <span th:text="${sensor.calefaccion}" />
+<p> AIRE: <span th:text="${sensor.aire}" />
+
+<h1>---- SENSORES DE TEMPERATURA AGREGADOS ----</h1>
+
+<table>
+	<tr>
+		<th>id</th>
+		<th>nombre</th>
+		<th>activo</th>
+		<th>temperatura</th>
+		<th>calefaccion</th>
+		<th>aire</th>
+
+	</tr>
+
+	<tr th:each="sensor : ${listaSensores}">
+
+		<th th:text="${sensor.id}"></th>
+		<td th:text="${sensor.nombre}"></td>
+		<td th:text="${sensor.activo}"></td>
+		<td th:text="${sensor.temperatura}"></td>
+		<td th:text="${sensor.calefaccion}"></td>
+		<td th:text="${sensor.aire}"></td>
+
+
+	</tr>
+
+
+
+</table>
