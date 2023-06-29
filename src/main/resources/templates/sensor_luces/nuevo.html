@@ -1,0 +1,9 @@
+ <form action="#" th:action="@{/sensor_luces/crear}" th:object="${sensorLuces}" method="post">
+		  <input type="hidden" th:field="*{nombre}"/>
+		  <p>Estado: <input type="checkbox" th:field="*{activo}"/>
+		  <p>Pasillo: <input type="number" th:field="*{pasillo}"/></p>
+		  <p>Nivel de Luz: <input type="number" th:field="*{nivelLuz}"/></p>
+		  <p>Encendido: <input type="checkbox" th:field="*{encendido}"/>
+		  <p>Gente: <input type="checkbox" th:field="*{gente}"/>
+		  <input type="submit" value="Añadir"/>
+</form>

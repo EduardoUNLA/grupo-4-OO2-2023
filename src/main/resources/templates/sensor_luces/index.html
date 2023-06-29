@@ -1,0 +1,106 @@
+<title>Sensores de luces</title>
+<style>
+    body {
+      text-align: left;
+      font-family: Arial, sans-serif;
+    }
+
+    .link-container {
+      display: inline-block;
+      margin-top: 20px;
+      border: 2px solid red;
+      border-radius: 5px;
+      padding: 10px;
+    }
+
+    .link-container a {
+      color: red;
+      text-decoration: none;
+    }
+  </style>
+  <div class="link-container">
+<font size="5px"><a href="/sensor_luces/nuevo" style="text-decoration: none;">Añadir sensor de luz</a></font>
+  </div>
+  <div class="link-container">
+<font size="5px"><a href="/sensor_luces/generar_eventos" style="text-decoration: none;">Generar Eventos</a></font>
+  </div>
+<h1 align="left" font-family: Verdana, Geneva, Tahoma, sans-serif;>Sensores encendidos</h1>
+<table border="1px">
+		  <thead>
+			  
+			  <tr>
+				  <th>Id</th>
+				  <th>Dispositivo</th>
+				  <th>Nombre</th>
+				  <th>Pasillo</th>
+				  <th>Nivel de Luz</th>
+				  <th>Gente</th>
+				  <th>Estado</th>
+				  <th>Editar</th>
+			  </tr>
+		  </thead>
+		  <tbody>
+			  <tr th:each="s : ${sensores}" th:if="${s.activo}">
+				  <td><span th:text="${s.id}" /></td>
+				  <td><span th:text="${s.activo} ? 'encendido' : 'apagado'"/></td>
+				  <td><span th:text="${s.nombre}" /></td>
+				  <td><span th:text="${s.pasillo}" /></td>
+				  <td><span th:text="${s.nivelLuz}" /></td>
+				  <td><span th:text="${s.gente}? 'true' : 'false'" /></td>
+				  <td><span th:text="${s.encendido} ? 'encendido' : 'apagado'"/></td>
+				  <td>
+					  <a th:href="@{/sensor_luces/{id}(id=${s.id})}" style="text-decoration: none;">Editar</a>
+				  </td>
+		  </tbody>
+</table>
+ <h1 align="left" font-family: Verdana, Geneva, Tahoma, sans-serif;>Sensores apagados</h1>
+<table border="1px">
+		  <thead>
+			  
+			  <tr>
+				  <th>Id</th>
+				  <th>Dispositivo</th>
+				  <th>Nombre</th>
+				  <th>Pasillo</th>
+				  <th>Nivel de Luz</th>
+				  <th>Gente</th>
+				  <th>Estado</th>
+				  <th>Editar</th>
+			  </tr>
+		  </thead>
+		  <tbody>
+			  <tr th:each="s : ${sensores}" th:unless="${s.activo}">
+				 <td><span th:text="${s.id}" /></td>
+				  <td><span th:text="${s.activo} ? 'encendido' : 'apagado'"/></td>
+				  <td><span th:text="${s.nombre}" /></td>
+				  <td><span th:text="${s.pasillo}" /></td>
+				  <td><span th:text="${s.nivelLuz}" /></td>
+				  <td><span th:text="${s.gente}? 'true' : 'false'" /></td>
+				  <td><span th:text="${s.encendido} ? 'encendido' : 'apagado'"/></td>
+				  <td>
+					  <a th:href="@{/sensor_luces/{id}(id=${s.id})}" style="text-decoration: none;">Editar</a>
+				  </td>
+		  </tbody>
+</table>
+<p> &nbsp; &nbsp; &nbsp;</p>
+<h1 align="left" font-family: Verdana, Geneva, Tahoma, sans-serif;>Eventos</h1>
+<table border="1px">
+		  <thead>
+			  
+			  <tr>
+				  <th>Id</th>
+				  <th>Descripcion</th>
+				  <th>Fecha y Hora</th>
+				  <th>Dispositivo</th>
+				  <th>ID del dispositivo</th>
+			  </tr>
+		  </thead>
+		  <tbody>
+			  <tr th:each="e : ${eventos}">
+				  <td><span th:text="${e.id}" /></td>
+				  <td><span th:text="${e.descripcion}"/></td>
+				  <td><span th:text="${e.fechaHora}" /></td>
+				  <td><span th:text="${e.dispositivo.nombre}"></td>
+				  <td><span th:text="${e.dispositivo.id}"></td>
+		  </tbody>
+</table>
