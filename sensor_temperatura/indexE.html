@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>nuevoEventoT</title>
+</head>
+<body>
+
+<h1>------------------------    EVENTO    ------------------------</h1>
+
+<p> ID: <span th:text="${evento.id}" />
+<p> DESCRIPCION: <span th:text="${evento.descripcion}" />
+<p> FECHA Y HORA: <span th:text="${evento.fechaHora}" />
+<p> DISPOSITIVO: <span th:text="${evento.dispositivo}" />
+
+
+
+<h1>--------------------    EVENTOS     --------------------</h1>
+<table border="1px">
+		  <thead>
+			  
+			  <tr>
+				  <th>Id</th>
+				  <th>Descripcion</th>
+				  <th>Fecha y Hora</th>
+				  <th>Dispositivo</th>
+			  </tr>
+		  </thead>
+		  <tbody>
+			  <tr th:each="e : ${eventos}">
+				  <td><span th:text="${e.id}" /></td>
+				  <td><span th:text="${e.descripcion}"/></td>
+				  <td><span th:text="${e.fechaHora}" /></td>
+				  <td><span th:text="${e.dispositivo.nombre}"></td>
+		  </tbody>
+</table>
+
+
+</body>
+</html>

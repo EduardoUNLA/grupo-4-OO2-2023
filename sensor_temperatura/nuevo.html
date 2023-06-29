@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>nuevoSensorT</title>
+</head>
+<body>
+
+<h1>------------    SENSOR DE TEMPERATURA    ------------</h1>
+
+<p> NOMBRE: <span th:text="${sensor.nombre}" />
+<p> ACTIVO: <span th:text="${sensor.activo}" />
+<p> TEMPERATURA: <span th:text="${sensor.temperatura}" />
+<p> CALEFACCION: <span th:text="${sensor.calefaccion}" />
+<p> AIRE: <span th:text="${sensor.aire}" />
+
+<h1>------------    SENSORES DE TEMPERATURA AGREGADOS    ------------</h1>
+
+<table>
+	<tr>
+		<th>id</th>
+		<th>nombre</th>
+		<th>activo</th>
+		<th>temperatura</th>
+		<th>calefaccion</th>
+		<th>aire</th>
+
+	</tr>
+
+	<tr th:each="sensor : ${listaSensores}">
+
+		<th th:text="${sensor.id}"></th>
+		<td th:text="${sensor.nombre}"></td>
+		<td th:text="${sensor.activo}"></td>
+		<td th:text="${sensor.temperatura}"></td>
+		<td th:text="${sensor.calefaccion}"></td>
+		<td th:text="${sensor.aire}"></td>
+
+
+	</tr>
+
+</table>
+
+<p> &nbsp; &nbsp; &nbsp;</p>
+<h1>--------------------    EVENTOS     --------------------</h1>
+<table border="1px">
+		  <thead>
+			  
+			  <tr>
+				  <th>Id</th>
+				  <th>Descripcion</th>
+				  <th>Fecha y Hora</th>
+				  <th>Dispositivo</th>
+			  </tr>
+		  </thead>
+		  <tbody>
+			  <tr th:each="e : ${eventos}">
+				  <td><span th:text="${e.id}" /></td>
+				  <td><span th:text="${e.descripcion}"/></td>
+				  <td><span th:text="${e.fechaHora}" /></td>
+				  <td><span th:text="${e.dispositivo.nombre}"></td>
+		  </tbody>
+</table>
+
+
+</body>
+</html>

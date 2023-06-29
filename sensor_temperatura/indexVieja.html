@@ -1,0 +1,72 @@
+<title>Sensores de temperatura</title>
+<style>
+    body {
+      text-align: left;
+      font-family: Arial, sans-serif;
+    }
+
+    .link-container {
+      display: inline-block;
+      margin-top: 20px;
+      border: 2px solid red;
+      border-radius: 5px;
+      padding: 10px;
+    }
+
+    .link-container a {
+      color: red;
+      text-decoration: none;
+    }
+  </style>
+  <div class="link-container">
+<font size="5px"><a href="/sensor_temperatura/altaSensorT" style="text-decoration: none;">Añadir sensor</a></font>
+  </div>
+  <div class="link-container">
+<font size="5px"><a href="/sensor_temperatura/generar_eventos" style="text-decoration: none;">Generar Eventos</a></font>
+  </div>
+<h1 align="left" font-family: Verdana, Geneva, Tahoma, sans-serif;>Sensores encendidos</h1>
+<table border="1px">
+		  <thead>
+			  
+			  <tr>
+				  <th>Id</th>
+				  <th>Nombre</th>
+				  <th>Activo</th>
+				  <th>Temperatura</th>
+				  <th>Calefaccion</th>
+				  <th>Aire</th>
+			  </tr>
+		  </thead>
+		  <tbody>
+			  <tr th:each="sensor : ${sensores}" th:if="${sensor.activo}">
+				  <td><span th:text="${sensor.id}" /></td>
+				  <td><span th:text="${sensor.activo} ? 'encendido' : 'apagado'"/></td>
+				  <td><span th:text="${sensor.nombre}" /></td>
+				  <td><span th:text="${sensor.temperatura}"/></td>
+				  <td><span th:text="${sensor.calefacion} ? 'Encendido' : 'Apagado'" /></td>
+				  <td><span th:text="${sensor.aire} ? 'Encendido' : 'Apagado'"  /></td>
+				  <td>
+					  <a th:href="@{/sensor_temperatura/{id}(id=${sensor.id})}" style="text-decoration: none;">Editar</a>
+				  </td>
+		  </tbody>
+
+<p> &nbsp; &nbsp; &nbsp;</p>
+<h1 align="left" font-family: Verdana, Geneva, Tahoma, sans-serif;>Eventos</h1>
+<table border="1px">
+		  <thead>
+			  
+			  <tr>
+				  <th>Id</th>
+				  <th>Descripcion</th>
+				  <th>Fecha y Hora</th>
+				  <th>Dispositivo</th>
+			  </tr>
+		  </thead>
+		  <tbody>
+			  <tr th:each="e : ${eventos}">
+				  <td><span th:text="${e.id}" /></td>
+				  <td><span th:text="${e.descripcion}"/></td>
+				  <td><span th:text="${e.fechaHora}" /></td>
+				  <td><span th:text="${e.dispositivo.nombre}"></td>
+		  </tbody>
+</table>
