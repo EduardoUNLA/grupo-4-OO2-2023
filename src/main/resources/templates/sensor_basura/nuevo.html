@@ -1,0 +1,7 @@
+ <form action="#" th:action="@{/sensor_basura/crear}" th:object="${sensorBasura}" method="post">
+		  <p>Nombre: <input type="text" th:field="*{nombre}"/></p>
+		  <p>Encendido: <input type="checkbox" th:field="*{activo}"/>
+		  <input type="hidden" th:field="*{lleno}"/>
+		  <p>Departamento: <input type="number" th:field="*{nroDepartamento}"/></p>
+		  <input type="submit" value="Añadir"/>
+</form>

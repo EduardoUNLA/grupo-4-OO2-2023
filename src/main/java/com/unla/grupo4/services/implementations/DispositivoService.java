@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.unla.grupo4.entities.Dispositivo;
+import com.unla.grupo4.models.DispositivoModel;
 import com.unla.grupo4.repositories.IDispositivoRepository;
 import com.unla.grupo4.services.IDispositivoService;
 
@@ -41,9 +42,25 @@ public class DispositivoService implements IDispositivoService{
 	}
 
 	@Override
-	public Dispositivo insertOrUpdate(Dispositivo dispositivo) {
+	public DispositivoModel insertOrUpdate(Dispositivo dispositivo) {
 		Dispositivo dispositivoNew = dispositivoRepository.save(dispositivo);
+		return modelMapper.map(dispositivoNew, DispositivoModel.class);
+	}
+
+	@Override
+	public Dispositivo getById(int id) {
+		Dispositivo dispositivoNew = dispositivoRepository.findById(id);
 		return dispositivoNew;
+	}
+
+	@Override
+	public boolean remove(int id) {
+		try {
+			dispositivoRepository.deleteById(id);
+			return true;
+		} catch(Exception e) {
+			return false;
+		}
 	}
 
 }

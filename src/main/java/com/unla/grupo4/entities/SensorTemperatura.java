@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter @Setter @NoArgsConstructor
 public class SensorTemperatura extends Dispositivo{
 	
-	//tiene que ser una lista de temperaturas
+	
 	private float temperatura;
 	private boolean aire;
 	private boolean calefaccion;

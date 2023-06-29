@@ -1,8 +1,9 @@
 package com.unla.grupo4.entities;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+import java.util.ArrayList;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -29,12 +30,18 @@ public class Dispositivo {
 	
 	private boolean activo;
 	
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="dispositivo")
-	private Set<Evento> eventos = new HashSet<>();
+	@OneToMany(mappedBy = "dispositivo",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Evento> eventos = new ArrayList<>();
 	
 	public Dispositivo(int id, String nombre, boolean activo) {
 		this.id = id;
 		this.nombre = nombre;
-		this.activo = activo;
+		this.activo = true;
 	}
+	
+	public Dispositivo(String nombre, boolean activo) {
+		super();
+		this.nombre = nombre;
+		this.activo = true;
+	}	
 }
