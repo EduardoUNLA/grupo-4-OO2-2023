@@ -99,12 +99,12 @@ public class SensorLucesController {
 		List<SensorLuces> sensores = sensorLucesService.comprobar(sensorLucesService.findByActivo(true));
 		for (int i = 0; i < sensores.size(); i++) {
 			sensorLucesService.insertOrUpdate(sensores.get(i));
-			if (sensores.get(i).getNivelLuz() < 50 || sensores.get(i).isGente() == true
-					|| sensores.get(i).isEncendido() == false) {
+			if (sensores.get(i).getNivelLuz() < 50f || sensores.get(i).isGente() == true
+					&& sensores.get(i).isEncendido() == false) {
 				EventoModel eventoModel = new EventoModel("Encender luz", LocalDateTime.now(), sensores.get(i));
 				eventoService.insertOrUpdate(eventoModel);
-			} else if ((sensores.get(i).isGente() == false && sensores.get(i).getNivelLuz() > 50)
-					|| sensores.get(i).isEncendido() == true) {
+			} else if (sensores.get(i).isGente() == false || sensores.get(i).getNivelLuz() > 50f
+					&& sensores.get(i).isEncendido() == true) {
 				EventoModel eventoModel = new EventoModel("Apagar luz", LocalDateTime.now(), sensores.get(i));
 				eventoService.insertOrUpdate(eventoModel);
 			}
