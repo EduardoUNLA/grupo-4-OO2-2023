@@ -18,10 +18,15 @@ public class ViewRouteHelper {
 	public final static String SENSORBASURA_INDEX = "/sensor_basura/index";
 	public final static String SENSORBASURA_UPDATE = "sensor_basura/update";
 	
+	//
+	public final static String SENSORLUCES_NUEVO = "/sensor_luces/nuevo";
+	public final static String SENSORLUCES_INDEX = "/sensor_luces/index";
+	public final static String SENSORLUCES_UPDATE = "sensor_luces/update";
+	
+	
 	/**** Redirects ****/
 	public final static String ROUTE = "/user/user_select";
 	public final static String SENSORBASURA_ROOT ="/sensor_basura";
+	public final static String SENSORLUCES_ROOT ="/sensor_luces";
 	public static final String EVENTOS_ROOT = "/eventos";
-	
-	
 }

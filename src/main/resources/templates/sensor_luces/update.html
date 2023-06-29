@@ -1,0 +1,31 @@
+<form action="#" th:action="@{/sensor_luces/update}" th:object="${sensorLuces}" method="post">
+	<input type="hidden" th:field="*{id}" />
+	<p>Nombre: <input type="text" th:field="*{nombre}" /></p>
+	<p><input type="hidden" th:field="*{activo}" /></p>
+	<p>Pasillo: <input type="number" th:field="*{pasillo}"/></p>
+	<p>Nivel de Luz: <input type="number" th:field="*{nivelLuz}"/></p>
+	<p>Encendido: <input type="checkbox" th:field="*{encendido}"/>
+	<p>Gente: <input type="checkbox" th:field="*{gente}"/>
+	<input type="submit" value="Guardar" />
+</form>
+<form action="#" th:action="@{/sensor_luces/baja}" th:object="${sensorLuces}"method="post">
+	<input type="hidden" th:field="*{id}" />
+	<input type="hidden" th:field="*{nombre}" />
+	<input type="hidden" th:field="*{pasillo}" />
+	<input type="hidden" th:field="*{nivelLuz}" />
+	<input type="hidden" th:field="*{encendido}" />
+	<input type="hidden" th:field="*{gente}" />
+	<input type="submit" value="Apagar sensor" />
+</form>
+<form action="#" th:action="@{/sensor_luces/alta}" th:object="${sensorLuces}"method="post">
+	<input type="hidden" th:field="*{id}" />
+	<input type="hidden" th:field="*{nombre}" />
+	<input type="hidden" th:field="*{pasillo}" />
+	<input type="hidden" th:field="*{nivelLuz}" />
+	<input type="hidden" th:field="*{encendido}" />
+	<input type="hidden" th:field="*{gente}" />
+	<input type="submit" value="Encender sensor" />
+</form>
+<form action="#" th:action="@{/sensor_luces/delete/{id}(id=${sensorLuces.id})}" method="post">
+	<input type="submit" value="Eliminar sensor"/>
+</form>
