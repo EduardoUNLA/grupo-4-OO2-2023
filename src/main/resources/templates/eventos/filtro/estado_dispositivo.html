@@ -1,0 +1,29 @@
+<title>Eventos Filtrados por estado</title>
+<style>
+    body {
+      text-align: left;
+      font-family: Arial, sans-serif;
+    }
+  </style>
+<table border="1px">
+		  <thead>
+			  
+			  <tr>
+				  <th>Id</th>
+				  <th>Id Dispositivo</th>
+				  <th>Descripcion</th>
+				  <th>Fecha y Hora</th>
+				  <th>Dispositivo</th>
+				  <th>Estado</th>
+			  </tr>
+		  </thead>
+		  <tbody>
+			  <tr th:each="e : ${eventos}">
+				  <td><span th:text="${e.id}" /></td>
+				  <td><span th:text="${e.dispositivo.id}" /></td>
+				  <td><span th:text="${e.descripcion}"/></td>
+				  <td><span th:text="${#temporals.format(e.fechaHora, 'dd-MM-yyyy HH:mm')}" /></td>
+				  <td><span th:text="${e.dispositivo.nombre}"></td>
+				  <td><span th:text="${e.dispositivo.activo} ? 'encendido' : 'apagado'"/></td>
+		  </tbody>
+</table>
