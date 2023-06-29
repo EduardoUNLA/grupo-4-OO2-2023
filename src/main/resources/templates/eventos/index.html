@@ -18,12 +18,14 @@
       text-decoration: none;
     }
   </style> 
-
+<div class="link-container">
+<font size="2px"><a href="/" style="text-decoration: none;">Home</a></font>
+  </div>
  <form action ="#" th:action="@{eventos/filtro/nombre}" method="post">
     Dispositivo<select name="nombreDispositivo">
 		<option value="Sensor Basura">Sensor Basura</option>
-		<option value="Sensor Basura">Sensor Basura</option>
-		<option value="Sensor Basura">Sensor Basura</option>
+		<option value="Sensor de luces">Sensor Luces</option>
+		<option value="Sensor Temperatura">Sensor Temperatura</option>
     </select>
     <button type="submit">Filtrar</button>
  </form>
