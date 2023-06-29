@@ -1,8 +1,5 @@
 package com.unla.grupo4.controllers;
 
-import java.util.List;
-import java.time.LocalDateTime;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,7 +14,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.unla.grupo4.entities.SensorBasura;
 import com.unla.grupo4.helpers.ViewRouteHelper;
-import com.unla.grupo4.models.EventoModel;
 import com.unla.grupo4.models.SensorBasuraModel;
 import com.unla.grupo4.services.IEventoService;
 import com.unla.grupo4.services.ISensorBasuraService;
