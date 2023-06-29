@@ -11,12 +11,13 @@ public class ViewRouteHelper {
 	public final static String DISPOSITIVO_INDEX = "/dispositivo";
 	
 	//Evento
-	public final static String EVENTO_INDEX= "eventos/index";
-	
-	//SensorBasura
-	public final static String SENSORBASURA_NUEVO = "/sensor_basura/nuevo";
-	public final static String SENSORBASURA_INDEX = "/sensor_basura/index";
-	public final static String SENSORBASURA_UPDATE = "sensor_basura/update";
+		public final static String EVENTO_INDEX= "eventos/index";
+		public static final String EVENTO_FILTRO = "eventos/filtro";
+		//SensorBasura
+		public final static String SENSORBASURA_NUEVO = "/sensor_basura/nuevo";
+		public final static String SENSORBASURA_INDEX = "/sensor_basura/index";
+		public final static String SENSORBASURA_UPDATE = "/sensor_basura/update";
+		public static final String SENSORBASURA_EVENTOS = "/sensor_basura/eventos";
 	
 	//
 	public final static String SENSORLUCES_NUEVO = "/sensor_luces/nuevo";

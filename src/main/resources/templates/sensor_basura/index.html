@@ -19,14 +19,24 @@
     }
   </style>
   <div class="link-container">
+<font size="2px"><a href="/user/admin" style="text-decoration: none;">Volver</a></font>
+  </div>
+  <div class="link-container">
 <font size="5px"><a href="/sensor_basura/nuevo" style="text-decoration: none;">Añadir sensor</a></font>
   </div>
   <div class="link-container">
 <font size="5px"><a href="/sensor_basura/generar_eventos" style="text-decoration: none;">Generar Eventos</a></font>
   </div>
-  <div class="link-container">
-<font size="5px"><a href="/sensor_basura/vaciar" style="text-decoration: none;">Vaciar contenedores</a></font>
   </div>
+  <div class="link-container">
+<font size="5px"><a href="/sensor_basura/encender_todos" style="text-decoration: none;">Encender Todos</a></font>
+  </div>
+  <div class="link-container">
+<font size="5px"><a href="/sensor_basura/apagar_todos" style="text-decoration: none;">Apagar Todos</a></font>
+  </div>
+  <!--<div class="link-container">
+<font size="5px"><a href="/sensor_basura/vaciar" style="text-decoration: none;">Vaciar contenedores</a></font>
+  </div>-->
 <h1 align="left" font-family: Verdana, Geneva, Tahoma, sans-serif;>Sensores encendidos</h1>
 <table border="1px">
 		  <thead>
@@ -39,6 +49,7 @@
 				  <th>Departamento</th>
 				  <th>Distancia basura</th>
 				  <th>Editar</th>
+				  <th>Eventos</th>
 			  </tr>
 		  </thead>
 		  <tbody>
@@ -48,9 +59,12 @@
 				  <td><span th:text="${s.nombre}" /></td>
 				  <td><span th:text="${s.lleno} ? 'Recoger' : 'Falta'" /></td>
 				  <td><span th:text="${s.nroDepartamento}" /></td>
-				  <td><span th:text="${s.distanciaBasura}" /></td>
+				  <td><span th:text="${s.distanciaBasura}" /> mts</td>
 				  <td>
 					  <a th:href="@{/sensor_basura/{id}(id=${s.id})}" style="text-decoration: none;">Editar</a>
+				  </td>
+				  <td>
+					  <a th:href="@{/sensor_basura/eventos/{id}(id=${s.id})}" style="text-decoration: none;">Ver</a>
 				  </td>
 		  </tbody>
 </table>
@@ -66,6 +80,7 @@
 				  <th>Departamento</th>
 				  <th>Distancia basura</th>
 				  <th>Editar</th>
+				  <th>Eventos</th>
 			  </tr>
 		  </thead>
 		  <tbody>
@@ -75,9 +90,12 @@
 				  <td><span th:text="${s.nombre}" /></td>
 				  <td><span th:text="${s.lleno} ? 'Recoger' : 'Falta'" /></td>
 				  <td><span th:text="${s.nroDepartamento}" /></td>
-				  <td><span th:text="${s.distanciaBasura}" /></td>
+				  <td><span th:text="${s.distanciaBasura}" /> mts</td>
 				  <td>
 					  <a th:href="@{/sensor_basura/{id}(id=${s.id})}" style="text-decoration: none;">Editar</a>
+				  </td>
+				  <td>
+					  <a th:href="@{/sensor_basura/eventos/{id}(id=${s.id})}" style="text-decoration: none;">Ver</a>
 				  </td>
 		  </tbody>
 </table>
@@ -88,16 +106,18 @@
 			  
 			  <tr>
 				  <th>Id</th>
+				  <th>Id Dispositivo</th>
 				  <th>Descripcion</th>
 				  <th>Fecha y Hora</th>
-				  <th>Dispositivo</th>
+				  <th>Estado</th>
 			  </tr>
 		  </thead>
 		  <tbody>
 			  <tr th:each="e : ${eventos}">
 				  <td><span th:text="${e.id}" /></td>
+				  <td><span th:text="${e.dispositivo.id}" /></td>
 				  <td><span th:text="${e.descripcion}"/></td>
-				  <td><span th:text="${e.fechaHora}" /></td>
-				  <td><span th:text="${e.dispositivo.nombre}"></td>
+				  <td><span th:text="${#temporals.format(e.fechaHora, 'dd-MM-yyyy HH:mm')}" /></td>
+				  <td><span th:text="${e.dispositivo.activo} ? 'encendido' : 'apagado'"/></td>
 		  </tbody>
 </table>

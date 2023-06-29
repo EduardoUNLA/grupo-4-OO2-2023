@@ -1,5 +1,6 @@
 package com.unla.grupo4.services.implementations;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +47,7 @@ public class EventoService implements IEventoService {
 	}
 
 	@Override
-	public Evento findBy(int id) {
+	public Evento getdById(int id) {
 		return eventoRepository.findById(id);
 	}
 
@@ -67,6 +68,29 @@ public class EventoService implements IEventoService {
 			}
 		}
 		return eventosSensorBasura;
+	}
+	
+	public List<Evento> getByNombreDispositivo(String nombre){
+		if(nombre != null)
+			return eventoRepository.findByNombreDispositivo(nombre);
+		else return null;
+	}
+
+
+	@Override
+	public List<Evento> getByFiltro(String nombreDispositivo) {
+			return eventoRepository.findByNombreDispositivo(nombreDispositivo);
+	}
+	
+	@Override
+	public List<Evento> getByFechaHoraBetween(LocalDateTime inicio, LocalDateTime fin){
+		return eventoRepository.findByFechaHoraBetween(inicio, fin);
+	}
+
+
+	@Override
+	public List<Evento> getByDispositivoActivo(boolean estadoDispositivo) {
+		return eventoRepository.findByEstadoDispositivo(estadoDispositivo);
 	}
 
 }

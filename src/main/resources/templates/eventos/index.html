@@ -1,19 +1,68 @@
 <title>Eventos</title>
+<style>
+    body {
+      text-align: left;
+      font-family: Arial, sans-serif;
+    }
+
+    .link-container {
+      display: inline-block;
+      margin-top: 20px;
+      border: 2px solid red;
+      border-radius: 5px;
+      padding: 10px;
+    }
+
+    .link-container a {
+      color: red;
+      text-decoration: none;
+    }
+  </style> 
+<div class="link-container">
+<font size="2px"><a href="/" style="text-decoration: none;">Home</a></font>
+  </div>
+ <form action ="#" th:action="@{eventos/filtro/nombre}" method="post">
+    Dispositivo<select name="nombreDispositivo">
+		<option value="Sensor Basura">Sensor Basura</option>
+		<option value="Sensor de luces">Sensor Luces</option>
+		<option value="Sensor Temperatura">Sensor Temperatura</option>
+    </select>
+    <button type="submit">Filtrar</button>
+ </form>
+  <form action ="#" th:action="@{eventos/filtro/id}" method="post">
+    Id<input type="number" name="idEvento"/>
+    <button type="submit">Filtrar</button>
+ </form>
+ <form action ="#" th:action="@{eventos/filtro/id_dispositivo}" method="post">
+    Id Dispositivo<input type="number" name="idDispositivo"/>
+    <button type="submit">Filtrar</button>
+ </form>
+ <form action ="#" th:action="@{eventos/filtro/estado_dispositivo}" method="post">
+    Estado<select name="estadoDispositivo">
+		<option value="true">Encendido</option>
+		<option value="false">Apagado</option>
+    </select>
+    <button type="submit">Filtrar</button>
+ </form>
 <table border="1px">
 		  <thead>
 			  
 			  <tr>
 				  <th>Id</th>
+				  <th>Id Dispositivo</th>
 				  <th>Descripcion</th>
 				  <th>Fecha y Hora</th>
 				  <th>Dispositivo</th>
+				  <th>Estado</th>
 			  </tr>
 		  </thead>
 		  <tbody>
 			  <tr th:each="e : ${eventos}">
 				  <td><span th:text="${e.id}" /></td>
+				  <td><span th:text="${e.dispositivo.id}" /></td>
 				  <td><span th:text="${e.descripcion}"/></td>
-				  <td><span th:text="${e.fechaHora}" /></td>
+				   <td><span th:text="${#temporals.format(e.fechaHora, 'dd-MM-yyyy HH:mm')}" /></td>
 				  <td><span th:text="${e.dispositivo.nombre}"></td>
+				  <td><span th:text="${e.dispositivo.activo} ? 'encendido' : 'apagado'"/></td>
 		  </tbody>
 </table>
