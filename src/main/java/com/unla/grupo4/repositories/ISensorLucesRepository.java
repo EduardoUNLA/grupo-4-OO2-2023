@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.unla.grupo4.entities.Dispositivo;
 import com.unla.grupo4.entities.SensorLuces;
+import com.unla.grupo4.models.SensorLucesModel;
 
 @Repository("sensorLucesRepository")
 public interface ISensorLucesRepository extends JpaRepository<SensorLuces, Serializable>{

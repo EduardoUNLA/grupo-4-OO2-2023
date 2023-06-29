@@ -22,13 +22,17 @@ public class SensorLuces extends Dispositivo {
 			boolean gente) {
 		super(id, nombre, activo);
 		this.pasillo = pasillo;
-		this.nivelLuz = nivelLuz;
+		setNivelLuz(nivelLuz);
 		this.encendido = encendido;
 		this.gente = gente;
 	}
-
-	public void Apagar() {
-		this.setEncendido(false);
-	}
-
+	
+	//Nivel de luz 100 = Mayor luminosidad. Nivel de luz 0 = Mayor oscuridad.
+	public void setNivelLuz(float nivelLuz) {
+		this.nivelLuz = Math.max(0, Math.min(100, nivelLuz));
+	} 
+	
+	public void setPasillo(int pasillo) {
+		this.pasillo = Math.max(-20, Math.min(30, pasillo));
+	} 
 }

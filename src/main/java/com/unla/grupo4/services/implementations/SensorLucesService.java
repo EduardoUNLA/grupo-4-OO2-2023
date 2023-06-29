@@ -74,5 +74,4 @@ public class SensorLucesService implements ISensorLucesService {
 	public List<SensorLuces> findByGente(boolean gente) {
 		return sensorLucesRepository.findByGente(gente);
 	}
-
 }
