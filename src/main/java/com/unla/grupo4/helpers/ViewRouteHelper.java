@@ -24,10 +24,16 @@ public class ViewRouteHelper {
 	public final static String SENSORLUCES_INDEX = "/sensor_luces/index";
 	public final static String SENSORLUCES_UPDATE = "sensor_luces/update";
 	
+	public final static String ALTA_SENSOR_TEMP_FORM = "/sensor_temperatura/altaSensorT";
+	public final static String ALTA_EVENTO_TEMP_FORM ="/sensor_temperatura/altaEventoT";
+	public final static String NVO_SENSOR_TEMP = "/sensor_temperatura/nuevo";
+	public final static String NVO_EVENTO_TEMP = "/sensor_temperatura/indexE";
+	public final static String SENSOR_TEMP_INDEX ="/sensor_temperatura/indexVieja";
 	
 	/**** Redirects ****/
 	public final static String ROUTE = "/user/user_select";
 	public final static String SENSORBASURA_ROOT ="/sensor_basura";
 	public final static String SENSORLUCES_ROOT ="/sensor_luces";
 	public static final String EVENTOS_ROOT = "/eventos";
+	public final static String SENSORTEMP_ROOT ="/sensor_temperatura";
 }
